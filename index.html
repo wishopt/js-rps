@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function game() {
+            let result
+            let playerScore
+            let computerScore
+            // Loop the game five times
+            let i
+            for (i = 0, playerScore = 0, computerScore = 0; i < 6; i++) {
+                    computerSelection = computerPlay()
+                    result = rpsRound()
+                    if (result === "win") {
+                        playerScore += 1
+                    } else  if (result === "loss") {
+                        computerScore += 1
+                    } else if (result === "draw") {
+                        playerScore += 1
+                        computerScore += 1
+                    } else if (result === "abort") {
+                        console.log("Game stopped")
+                        return
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                    console.log("Player: " + playerScore)
+                    console.log("Computer: " + computerScore)
+            }
+        } 
+
+        // Creates Computer's turn
+        function computerPlay() {
+            let computerResult
+            let rng = randomNumber(1,4)
+            if (rng === 1) {
+                computerResult = "rock"
+            } else if (rng === 2) {
+                computerResult = "paper"
+            } else {
+                computerResult = "scissors"
+            }
+            return computerResult
+        }
+        // Play a round of RPS
+        function rpsRound() {
+            let validInput
+            let result
+            let playerSelection
+            let computerSelection
+            for (validInput = false;validInput === false;) {
+                        playerSelection = prompt("Please select rock, paper or scissors by typing whichever you choose.")
+                        if (playerSelection === null) {
+                            return "abort"
+                        }
+                        playerSelection = playerSelection.toLowerCase()
+                        validInput = checkInput(playerSelection.toLowerCase())
+                    }
+            computerSelection = computerPlay()
+            if (playerSelection === computerSelection) {
+                result = "draw"
+            } else if (playerSelection === "rock") {
+                if (computerSelection === "paper") {
+                    result = "loss"
+                } else {
+                    result = "win"
+                }
+            } else if (playerSelection === "paper") {
+                if (computerSelection === "rock") {
+                    result = "win"
+                } else {
+                    result = "loss"
+                }
+            } else if (playerSelection === "scissors") {
+                if (computerSelection === "rock") {
+                    result = "loss"
+                } else {
+                    result = "win"
+                }
+            }
+            if (result === "win") {
+                console.log(playerSelection + " beats " + computerSelection + ", you win!")
+                return "win"
+            } else if (result === "loss") {
+                console.log(computerSelection + " beats " + playerSelection + ", you lose!")
+                return "loss"
+            } else if (result === "draw") {
+                console.log("Whoops, that's a draw!")
+                return "draw"
+            } else {
+                console.log("Error, looks like something went wrong")
+            }
+
+        }
+        // Generate random number within specified range (min inclusive, max exclusive)
+        function randomNumber(min,max) {
+            return Math.floor(Math.random() * (max-min)) +min;
+        }
+
+        // Check user input, input is expected to be lowercase
+        function checkInput(userInput) {
+            if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
+                return true
+            } else {
+                console.log("Whoops, looks like you mistyped, try again.")
+                return false
+            }
+        }
+    </script>
+</body>
+</html>
