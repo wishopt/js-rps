@@ -1,0 +1,17 @@
+#score1 {
+    display:inline-block;
+    width: 50px;
+}
+
+#score2 {
+    display:inline-block;
+    width: 50px;
+}
+
+h1 {
+    text-decoration: underline;
+}
+
+.hidden {
+    display:none;
+}
