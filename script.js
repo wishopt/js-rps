@@ -66,7 +66,7 @@ function scoreEvaluation() {
         btnScissors.classList.toggle("hidden");
         btnPaper.classList.toggle("hidden");
         btnRestart.classList.toggle("hidden");
-        if (playerScore === 5) {
+        if (playerScore.textContent === "5") {
             roundResult.textContent = `You've got five points. You win!`
         } else {
             roundResult.textContent = `The computer got five points. You lose!`
